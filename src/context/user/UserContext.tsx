@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 export interface UserStore {
   isAuthenticated: boolean;
-  user: User | undefined;
+  user: User | null;
   logIn: (params: { email: string; password: string }) => Promise<void>;
   register: (params: { email: string; password: string }) => Promise<void>;
   logOut: () => Promise<void>;

@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { MainNavigator } from "./MainNavigator";
 import { useUserStore } from "../hooks";
 import { HomeScreen, LoginScreen, RegisterScreen } from "../screens";
 
@@ -17,7 +18,11 @@ export const AuthNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShadowVisible: false }}>
       {isAuthenticated ? (
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={MainNavigator}
+          options={{ headerShown: false }}
+        />
       ) : (
         <>
           <Stack.Screen

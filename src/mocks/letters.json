@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "title": "Qué viva la compleañera",
+    "from": "user1@email.com",
+    "to": "paul@email.com",
+    "message": "Este es el contenido de la carta",
+    "date": "2016-03-20"
+  },
+  {
+    "id": "2",
+    "title": "Qué viva la compleañera",
+    "from": "user1@email.com",
+    "to": "paul@email.com",
+    "message": "Este es el contenido de la carta",
+    "date": "2016-03-20"
+  },
+  {
+    "id": "3",
+    "title": "Qué viva la compleañera",
+    "from": "user1@email.com",
+    "to": "paul@email.com",
+    "message": "Este es el contenido de la carta",
+    "date": "2016-03-20"
+  },
+  {
+    "id": "4",
+    "title": "Qué viva la compleañera",
+    "from": "user1@email.com",
+    "to": "paul@email.com",
+    "message": "Este es el contenido de la carta",
+    "date": "2016-03-20"
+  },
+  {
+    "id": "5",
+    "title": "Qué viva la compleañera",
+    "from": "user1@email.com",
+    "to": "paul@email.com",
+    "message": "Este es el contenido de la carta",
+    "date": "2016-03-20"
+  },
+  {
+    "id": "6",
+    "title": "Qué viva la compleañera",
+    "from": "user1@email.com",
+    "to": "paul@email.com",
+    "message": "Este es el contenido de la carta",
+    "date": "2016-03-20"
+  },
+  {
+    "id": "7",
+    "title": "Qué viva la compleañera",
+    "from": "user1@email.com",
+    "to": "paul@email.com",
+    "message": "Este es el contenido de la carta",
+    "date": "2016-03-20"
+  }
+]

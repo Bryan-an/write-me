@@ -17,11 +17,13 @@ interface Props {
 
 export const UserProvider: React.FC<Props> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [user, setUser] = useState<User | undefined>();
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+
+      if (firebaseUser) {
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
@@ -35,9 +37,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
 
   const logIn: UserStore["logIn"] = async ({ email, password }) => {
     try {
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
-
-      setUser(user);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       Alert.alert("Error", (error as any).message);
     }
@@ -45,13 +45,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
 
   const register: UserStore["register"] = async ({ email, password }) => {
     try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      setUser(user);
+      await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
       Alert.alert("Error", (error as any).message);
     }
