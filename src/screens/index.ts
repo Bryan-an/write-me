@@ -1,4 +1,4 @@
-export { HomeScreen } from "./HomeScreen";
+export { LetterFormScreen } from "./LetterFormScreen";
 export { LoginScreen } from "./LoginScreen";
 export { RegisterScreen } from "./RegisterScreen";
 export { FriendsScreen } from "./FriendsScreen";

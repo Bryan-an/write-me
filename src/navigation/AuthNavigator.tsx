@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { MainNavigator } from "./MainNavigator";
 import { useUserStore } from "../hooks";
-import { HomeScreen, LoginScreen, RegisterScreen } from "../screens";
+import { LoginScreen, RegisterScreen } from "../screens";
 
 export type AuthNavigatorParamList = {
   Home: undefined;

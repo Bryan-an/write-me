@@ -18,6 +18,7 @@ interface Props {
   onChangeText?: TextInputProps["onChangeText"];
   error?: string;
   autoCapitalize?: TextInputProps["autoCapitalize"];
+  numberOfLines?: TextInputProps["numberOfLines"];
 }
 
 export const TextInputComponent: React.FC<Props> = ({
@@ -29,6 +30,7 @@ export const TextInputComponent: React.FC<Props> = ({
   onChangeText,
   error,
   autoCapitalize,
+  numberOfLines,
 }) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
@@ -63,6 +65,8 @@ export const TextInputComponent: React.FC<Props> = ({
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         autoCapitalize={autoCapitalize}
+        numberOfLines={numberOfLines}
+        textAlignVertical={numberOfLines === undefined ? undefined : "top"}
       />
       {error ? (
         <View style={styles.errorContainer}>
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingVertical: 6,
   },
   labelContainer: {
     paddingBottom: 4,

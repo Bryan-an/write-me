@@ -1,13 +1,18 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 
 import { FloatingButtonComponent, LetterCardComponent } from "../components";
 import { useLettersStore } from "../hooks";
 import { Letter } from "../models";
+import { ReceivedNavigatorParamList } from "../navigation";
+
+interface Props
+  extends NativeStackScreenProps<ReceivedNavigatorParamList, "Received"> {}
 
 const Separator = () => <View style={{ height: 8 }} />;
 
-export const ReceivedScreen = () => {
+export const ReceivedScreen: React.FC<Props> = ({ navigation }) => {
   const { receivedLetters } = useLettersStore();
 
   const renderItem = ({ item }: { item: Letter }) => {
@@ -24,7 +29,10 @@ export const ReceivedScreen = () => {
         contentContainerStyle={styles.list}
         ItemSeparatorComponent={Separator}
       />
-      <FloatingButtonComponent icon="add" />
+      <FloatingButtonComponent
+        icon="add"
+        onPress={() => navigation.push("LetterForm")}
+      />
     </View>
   );
 };
