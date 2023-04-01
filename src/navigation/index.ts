@@ -4,3 +4,4 @@ export {
   ReceivedNavigator,
   ReceivedNavigatorParamList,
 } from "./ReceivedNavigator";
+export { SentNavigator, SentNavigatorParamList } from "./SentNavigator";

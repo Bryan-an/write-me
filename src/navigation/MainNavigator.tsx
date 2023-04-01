@@ -2,13 +2,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { ReceivedNavigator } from "./ReceivedNavigator";
+import { SentNavigator } from "./SentNavigator";
 import { HomeHeaderComponent } from "../components";
 import { colors } from "../constants";
-import { FriendsScreen, ProfileScreen, SentScreen } from "../screens";
+import { FriendsScreen, ProfileScreen } from "../screens";
 
 export type MainNavigatorParamList = {
   ReceivedNavigator: undefined;
-  Sent: undefined;
+  SentNavigator: undefined;
   Friends: undefined;
   Profile: undefined;
 };
@@ -24,7 +25,7 @@ export const MainNavigator = () => {
 
           if (route.name === "ReceivedNavigator") {
             iconName = focused ? "mail" : "mail-outline";
-          } else if (route.name === "Sent") {
+          } else if (route.name === "SentNavigator") {
             iconName = focused ? "archive" : "archive-outline";
           } else if (route.name === "Friends") {
             iconName = focused ? "people" : "people-outline";
@@ -52,8 +53,8 @@ export const MainNavigator = () => {
         options={{ tabBarLabel: "Recibidas" }}
       />
       <BottomTab.Screen
-        name="Sent"
-        component={SentScreen}
+        name="SentNavigator"
+        component={SentNavigator}
         options={{ tabBarLabel: "Enviadas" }}
       />
       <BottomTab.Screen

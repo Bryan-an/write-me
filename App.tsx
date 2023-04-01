@@ -6,13 +6,13 @@ import { AuthNavigator } from "./src/navigation";
 
 export default function App() {
   return (
-    <UserProvider>
-      <NavigationContainer>
-        <StatusBar style="auto" />
+    <NavigationContainer>
+      <StatusBar style="auto" />
+      <UserProvider>
         <LettersProvider>
           <AuthNavigator />
         </LettersProvider>
-      </NavigationContainer>
-    </UserProvider>
+      </UserProvider>
+    </NavigationContainer>
   );
 }

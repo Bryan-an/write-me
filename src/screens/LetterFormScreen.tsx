@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import {
@@ -7,27 +7,54 @@ import {
   OutlinedButtonComponent,
   TextInputComponent,
 } from "../components";
-import { ReceivedNavigatorParamList } from "../navigation";
+import { useLettersStore } from "../hooks";
+import { Letter } from "../models";
+import { SentNavigatorParamList } from "../navigation";
 
 interface Props
-  extends NativeStackScreenProps<ReceivedNavigatorParamList, "LetterForm"> {}
+  extends NativeStackScreenProps<SentNavigatorParamList, "LetterForm"> {}
 
-export const LetterFormScreen: React.FC<Props> = ({ navigation }) => {
-  const sendLetter = () => {
-    console.log("send letter");
+export const LetterFormScreen: React.FC<Props> = ({ navigation, route }) => {
+  const letter = route.params;
+
+  const [title, setTitle] = useState<string>(letter?.title || "");
+  const [to, setTo] = useState<string>(letter?.to || "");
+  const [message, setMessage] = useState<string>(letter?.message || "");
+  const { sendLetter, updateLetter } = useLettersStore();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const send = async () => {
+    setIsLoading(true);
+    await sendLetter({ title, to, message } as Letter);
+    setIsLoading(false);
+    navigation.pop();
+  };
+
+  const update = async () => {
+    setIsLoading(true);
+    await updateLetter({ id: letter?.id, title, to, message } as Letter);
+    setIsLoading(false);
+    navigation.pop();
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.form}>
         <View style={styles.inputContainer}>
-          <TextInputComponent label="Asunto" placeholder="Feliz cumpleaños!" />
+          <TextInputComponent
+            label="Asunto"
+            placeholder="Feliz cumpleaños!"
+            value={title}
+            onChangeText={setTitle}
+          />
         </View>
         <View style={styles.inputContainer}>
           <TextInputComponent
             label="Para"
             placeholder="amigo@email.com"
             autoCapitalize="none"
+            value={to}
+            onChangeText={setTo}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -35,6 +62,8 @@ export const LetterFormScreen: React.FC<Props> = ({ navigation }) => {
             label="Mensaje"
             placeholder="Te deseo un feliz cumpleaños"
             numberOfLines={10}
+            value={message}
+            onChangeText={setMessage}
           />
         </View>
         <View style={styles.buttonsContainer}>
@@ -42,11 +71,24 @@ export const LetterFormScreen: React.FC<Props> = ({ navigation }) => {
             <OutlinedButtonComponent
               text="Cancelar"
               onPress={() => navigation.pop()}
+              disabled={isLoading}
             />
           </View>
           <View style={{ width: 12 }} />
           <View style={styles.buttonContainer}>
-            <FilledButtonComponent text="Enviar" onPress={sendLetter} />
+            {letter ? (
+              <FilledButtonComponent
+                text="Actualizar"
+                onPress={update}
+                isLoading={isLoading}
+              />
+            ) : (
+              <FilledButtonComponent
+                text="Enviar"
+                onPress={send}
+                isLoading={isLoading}
+              />
+            )}
           </View>
         </View>
       </View>
