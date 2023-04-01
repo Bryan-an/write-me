@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { useUserStore } from "../hooks";
 import { HomeScreen, LoginScreen, RegisterScreen } from "../screens";
 
-type AuthNavigatorParamList = {
+export type AuthNavigatorParamList = {
   Home: undefined;
   Login: undefined;
   Register: undefined;
@@ -11,11 +12,26 @@ type AuthNavigatorParamList = {
 const Stack = createNativeStackNavigator<AuthNavigatorParamList>();
 
 export const AuthNavigator = () => {
+  const { isAuthenticated } = useUserStore();
+
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
+    <Stack.Navigator screenOptions={{ headerShadowVisible: false }}>
+      {isAuthenticated ? (
+        <Stack.Screen name="Home" component={HomeScreen} />
+      ) : (
+        <>
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ title: "" }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
+            options={{ title: "" }}
+          />
+        </>
+      )}
     </Stack.Navigator>
   );
 };

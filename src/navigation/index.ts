@@ -1,1 +1,1 @@
-export { AuthNavigator } from "./AuthNavigator";
+export { AuthNavigator, AuthNavigatorParamList } from "./AuthNavigator";
