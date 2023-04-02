@@ -5,3 +5,4 @@ export { HomeHeaderComponent } from "./HomeHeaderComponent";
 export { LetterCardComponent } from "./LetterCardComponent";
 export { FloatingButtonComponent } from "./FloatingButtonComponent";
 export { EmptyComponent } from "./EmptyComponent";
+export { FriendCardComponent } from "./FriendCardComponent";

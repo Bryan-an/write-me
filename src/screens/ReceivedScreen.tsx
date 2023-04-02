@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   list: {
-    paddingBottom: 70,
+    paddingBottom: 16,
     paddingHorizontal: 16,
   },
 });

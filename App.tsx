@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
-import { LettersProvider, UserProvider } from "./src/context";
+import { FriendsProvider, LettersProvider, UserProvider } from "./src/context";
 import { AuthNavigator } from "./src/navigation";
 
 export default function App() {
@@ -10,7 +10,9 @@ export default function App() {
       <StatusBar style="auto" />
       <UserProvider>
         <LettersProvider>
-          <AuthNavigator />
+          <FriendsProvider>
+            <AuthNavigator />
+          </FriendsProvider>
         </LettersProvider>
       </UserProvider>
     </NavigationContainer>
