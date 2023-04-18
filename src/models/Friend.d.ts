@@ -1,5 +1,5 @@
 export interface Pokedex {
-  results: Result[];
+  results: Friend[];
   info: Info;
 }
 
